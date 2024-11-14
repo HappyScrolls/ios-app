@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		B8E112592CE4F6A200DA7BF6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B8E112582CE4F6A200DA7BF6 /* SnapKit */; };
+		B8E1125C2CE4FB9800DA7BF6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8E1125B2CE4FB9800DA7BF6 /* WebKit.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		B8E1122F2CE4F1E100DA7BF6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +32,7 @@
 		B8E112182CE4F1E000DA7BF6 /* Togethery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Togethery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8E1122E2CE4F1E100DA7BF6 /* TogetheryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TogetheryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8E112382CE4F1E100DA7BF6 /* TogetheryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TogetheryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8E1125B2CE4FB9800DA7BF6 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -65,6 +71,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8E1125C2CE4FB9800DA7BF6 /* WebKit.framework in Frameworks */,
+				B8E112592CE4F6A200DA7BF6 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +99,7 @@
 				B8E1121A2CE4F1E000DA7BF6 /* Togethery */,
 				B8E112312CE4F1E100DA7BF6 /* TogetheryTests */,
 				B8E1123B2CE4F1E100DA7BF6 /* TogetheryUITests */,
+				B8E1125A2CE4FB9800DA7BF6 /* Frameworks */,
 				B8E112192CE4F1E000DA7BF6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -103,6 +112,14 @@
 				B8E112382CE4F1E100DA7BF6 /* TogetheryUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B8E1125A2CE4FB9800DA7BF6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B8E1125B2CE4FB9800DA7BF6 /* WebKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +142,7 @@
 			);
 			name = Togethery;
 			packageProductDependencies = (
+				B8E112582CE4F6A200DA7BF6 /* SnapKit */,
 			);
 			productName = Togethery;
 			productReference = B8E112182CE4F1E000DA7BF6 /* Togethery.app */;
@@ -208,6 +226,9 @@
 			);
 			mainGroup = B8E1120F2CE4F1E000DA7BF6;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B8E112572CE4F6A200DA7BF6 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B8E112192CE4F1E000DA7BF6 /* Products */;
 			projectDirPath = "";
@@ -294,7 +315,7 @@
 				INFOPLIST_FILE = Togethery/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -322,7 +343,7 @@
 				INFOPLIST_FILE = Togethery/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -569,6 +590,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B8E112572CE4F6A200DA7BF6 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B8E112582CE4F6A200DA7BF6 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B8E112572CE4F6A200DA7BF6 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B8E112102CE4F1E000DA7BF6 /* Project object */;
 }
