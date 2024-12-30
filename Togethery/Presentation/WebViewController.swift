@@ -4,6 +4,7 @@ import Firebase
 import UserNotifications
 import FirebaseMessaging
 import JWTDecode
+import SnapKit
 
 class WebViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHandler {
     // MARK: - Components
@@ -32,7 +33,7 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKScriptMessage
     
     // 특정 URL로 이동하기 위한 변수
     var targetURL: String?
-
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,27 +41,26 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKScriptMessage
         setupUI()
         loadWebPage()
     }
-
+    
     // MARK: - Setup UI
     private func setupUI() {
         view.addSubview(webView)
         view.addSubview(activityIndicator)
         webView.scrollView.addSubview(refreshControl) // Pull-to-Refresh 추가
+ 
+        webView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+        }
         
-        webView.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
         
-        NSLayoutConstraint.activate([
-            webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor), // Safe Area 적용
-            webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
-        webView.scrollView.isScrollEnabled = false // 스크롤 동작 막기
-        webView.scrollView.bounces = false// 스크롤 끝에서 튕김 효과 제거
+        // 스크롤 설정
+        webView.scrollView.isScrollEnabled = true // 스크롤 활성화
+        webView.scrollView.bounces = false // 스크롤 끝에서 튕김 효과 제거
     }
     
     // MARK: - Setup Navigation Bar
@@ -68,7 +68,7 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKScriptMessage
         let backButton = UIBarButtonItem(title: "뒤로", style: .plain, target: self, action: #selector(goBack))
         navigationItem.leftBarButtonItem = backButton
     }
-
+    
     // MARK: - Load Web Page
     private func loadWebPage() {
         let uri = targetURL ?? ""
@@ -80,13 +80,13 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKScriptMessage
         let request = URLRequest(url: url)
         webView.load(request)
     }
-
+    
     // MARK: - Refresh WebView
     @objc private func refreshWebView() {
         webView.reload()
         refreshControl.endRefreshing()
     }
-
+    
     // MARK: - Navigation Actions
     @objc private func goBack() {
         if webView.canGoBack {
@@ -121,7 +121,7 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKScriptMessage
         }
         decisionHandler(.allow)
     }
-
+    
     // MARK: - Fetch Auth Token and Send FCM Token
     private func fetchAuthTokenAndSendFCMToken() {
         let script = "localStorage.getItem('authToken');"
@@ -154,7 +154,7 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKScriptMessage
             }
         }
     }
-
+    
     private func decodeAuthToken(authToken: String) -> String? {
         do {
             let jwt = try decode(jwt: authToken)
@@ -164,7 +164,7 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKScriptMessage
             return nil
         }
     }
-
+    
     private func sendFCMTokenToServer(memberCode: String, fcmToken: String) {
         guard let url = URL(string: "https://api.togethery.store/notification/fcm-key") else {
             print("Invalid URL")
@@ -185,7 +185,7 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKScriptMessage
             }
         }.resume()
     }
-
+    
     // MARK: - JavaScript Bridge
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         if message.name == "nativeHandler", let messageBody = message.body as? String {
