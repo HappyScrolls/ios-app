@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A62BD0F42CECD84700380B21 /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = A62BD0F32CECD84700380B21 /* JWTDecode */; };
+		A6F23F532CE8C44E00CB0BB5 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = A6F23F522CE8C44E00CB0BB5 /* FirebaseCore */; };
+		A6F23F552CE8C44E00CB0BB5 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = A6F23F542CE8C44E00CB0BB5 /* FirebaseMessaging */; };
 		B8E112592CE4F6A200DA7BF6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B8E112582CE4F6A200DA7BF6 /* SnapKit */; };
 		B8E1125C2CE4FB9800DA7BF6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8E1125B2CE4FB9800DA7BF6 /* WebKit.framework */; };
 /* End PBXBuildFile section */
@@ -71,7 +74,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6F23F552CE8C44E00CB0BB5 /* FirebaseMessaging in Frameworks */,
 				B8E1125C2CE4FB9800DA7BF6 /* WebKit.framework in Frameworks */,
+				A6F23F532CE8C44E00CB0BB5 /* FirebaseCore in Frameworks */,
+				A62BD0F42CECD84700380B21 /* JWTDecode in Frameworks */,
 				B8E112592CE4F6A200DA7BF6 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,6 +149,9 @@
 			name = Togethery;
 			packageProductDependencies = (
 				B8E112582CE4F6A200DA7BF6 /* SnapKit */,
+				A6F23F522CE8C44E00CB0BB5 /* FirebaseCore */,
+				A6F23F542CE8C44E00CB0BB5 /* FirebaseMessaging */,
+				A62BD0F32CECD84700380B21 /* JWTDecode */,
 			);
 			productName = Togethery;
 			productReference = B8E112182CE4F1E000DA7BF6 /* Togethery.app */;
@@ -228,6 +237,8 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				B8E112572CE4F6A200DA7BF6 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				A6F23F512CE8C40500CB0BB5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				A62BD0F22CECD7B600380B21 /* XCRemoteSwiftPackageReference "JWTDecode" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B8E112192CE4F1E000DA7BF6 /* Products */;
@@ -308,9 +319,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Togethery/Togethery.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 425GMT37VF;
+				DEVELOPMENT_TEAM = P449226D8C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Togethery/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -323,7 +335,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.bangyesoon.Togethery;
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.togethery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -336,9 +348,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Togethery/Togethery.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 425GMT37VF;
+				DEVELOPMENT_TEAM = P449226D8C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Togethery/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -351,7 +364,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.bangyesoon.Togethery;
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.togethery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -592,6 +605,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A62BD0F22CECD7B600380B21 /* XCRemoteSwiftPackageReference "JWTDecode" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/auth0/JWTDecode.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.0;
+			};
+		};
+		A6F23F512CE8C40500CB0BB5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.5.0;
+			};
+		};
 		B8E112572CE4F6A200DA7BF6 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -603,6 +632,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A62BD0F32CECD84700380B21 /* JWTDecode */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A62BD0F22CECD7B600380B21 /* XCRemoteSwiftPackageReference "JWTDecode" */;
+			productName = JWTDecode;
+		};
+		A6F23F522CE8C44E00CB0BB5 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A6F23F512CE8C40500CB0BB5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		A6F23F542CE8C44E00CB0BB5 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A6F23F512CE8C40500CB0BB5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
 		B8E112582CE4F6A200DA7BF6 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B8E112572CE4F6A200DA7BF6 /* XCRemoteSwiftPackageReference "SnapKit" */;
