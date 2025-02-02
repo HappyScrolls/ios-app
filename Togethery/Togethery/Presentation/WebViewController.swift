@@ -69,17 +69,45 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKScriptMessage
         navigationItem.leftBarButtonItem = backButton
     }
     
-    // MARK: - Load Web Page
     private func loadWebPage() {
-        let uri = targetURL ?? ""
-        let urlString = "https://togethery.store/" + uri
-        guard let url = URL(string: urlString) else {
-            showErrorAlert(message: "유효하지 않은 URL입니다.")
+        guard let baseURL = URL(string: "https://togethery.store/") else {
             return
         }
-        let request = URLRequest(url: url)
+
+        let memberCode = UserDefaults.standard.string(forKey: "Member-Code")
+        let uri: String
+
+        // Member-Code가 있는 경우
+        if let memberCode = memberCode {
+            if let targetURL = targetURL, !targetURL.isEmpty {
+                uri = targetURL  // targetURL이 있으면 해당 URL로 이동
+            } else {
+                uri = "main"  // targetURL이 없으면 main으로 이동
+            }
+        } else {
+            uri = ""  // Member-Code가 없으면 기본 페이지
+        }
+
+        let fullURL = baseURL.appendingPathComponent(uri)
+        let request = URLRequest(url: fullURL)
         webView.load(request)
+
+        // localStorage에 Member-Code 저장 후 페이지 이동
+        if let memberCode = memberCode {
+            let script = """
+            localStorage.setItem('memberCode', '\(memberCode)');
+            window.location.href = '\(fullURL.absoluteString)';
+            """
+            webView.evaluateJavaScript(script) { _, error in
+                if let error = error {
+                    print("Error setting Member-Code before page load: \(error.localizedDescription)")
+                } else {
+                    print("✅ Member-Code 저장 완료 후 페이지 이동: \(fullURL.absoluteString)")
+                }
+            }
+        }
     }
+
     
     // MARK: - Refresh WebView
     @objc private func refreshWebView() {
@@ -160,9 +188,8 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKScriptMessage
                     print("FCM token is nil.")
                     return
                 }
-                print("FCM Token: \(fcmToken)")
                 if let memberCode = self?.decodeAuthToken(authToken: authToken) {
-                    print("Member Code: \(memberCode)")
+                    self?.storeMemberCodeInApp(memberCode)
                     self?.sendFCMTokenToServer(memberCode: memberCode, fcmToken: fcmToken)
                 } else {
                     print("Failed to decode authToken.")
@@ -170,6 +197,9 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKScriptMessage
             }
         }
     }
+    private func storeMemberCodeInApp(_ memberCode: String) {
+           UserDefaults.standard.set(memberCode, forKey: "Member-Code")
+       }
     
     private func decodeAuthToken(authToken: String) -> String? {
         do {

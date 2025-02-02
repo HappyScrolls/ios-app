@@ -54,9 +54,6 @@
 			exceptions = (
 				B8E112402CE4F1E100DA7BF6 /* Exceptions for "Togethery" folder in "Togethery" target */,
 			);
-			explicitFileTypes = {
-				Info.plist = sourcecode.make;
-			};
 			path = Togethery;
 			sourceTree = "<group>";
 		};
